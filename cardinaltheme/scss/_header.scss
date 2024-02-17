@@ -1,0 +1,374 @@
+/************************************************************************/
+/**************************** HEADER STYLES *****************************/
+/************************************************************************/
+
+.topbar {
+  background-color: $primary;
+  .content {
+    max-width: 1180px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5em;
+    .left, .right {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    @include desktop {
+      .left {
+        flex-basis: 15%;
+      }
+      .right {
+        flex-basis: 80%;
+      }
+    }
+    .top-nav__icons {
+     @include tablet {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      width: 100%;
+     }
+      .icon {
+        margin: 0 0.25em;
+        img {
+          width: 1em;
+          height: 1em;
+          display: block;
+          @include transitionAll();
+          @include desktop {
+            width: 1.25em;
+            height: 1.25em;
+          }
+          &:hover {
+            transform: scale(1.1);
+          }
+        }
+      }
+    }
+
+    .top-nav__drawer {
+      display: flex;
+      width: 100%;
+      .top-nav {
+        margin: 0;
+        padding-left: 0;
+        list-style: none;
+        display: flex;
+        font-size: 0.75em;
+        width: 100%;
+        justify-content: space-between;
+        @include desktop {
+          font-size: 0.85em;
+        }
+        li {
+          margin: 0 0.5em;
+          text-align: center;
+          a {
+            color: $white;
+            text-transform: uppercase;
+            font-family: Quicksand;
+            font-weight: 500;
+          }
+        }
+      }
+    }
+  }
+}
+
+.main-nav {
+  position: relative;
+  z-index: 10;
+
+  &.sticky-margin {
+    margin-top: 22vw;
+
+    @include tablet {
+      margin-top: 109px;
+    }
+    @include regulardesktop {
+      margin-top: 118px;
+    }
+  }
+
+  .sticky-wrapper {
+    background-color: $white;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+    @include dropShadow();
+
+    &.sticky {
+      position: fixed;
+
+      .main-nav__drawer.is-open {
+        top: 21vw;
+        @include tablet {
+          top: 0;
+        }
+      }
+    }
+  }
+
+  .main-nav__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 1em;
+
+    @include tablet {
+      padding: 0;
+    }
+
+    .main-nav__logo {
+      z-index: 3;
+      width: 10em;
+      padding: 0 0.5em;
+
+      @include tablet {
+        flex-basis: 18%;
+      }
+    }
+    .main-nav__bar {
+      position: relative;
+      z-index: 3;
+
+      .hamburger-button {
+        width: 3.5rem;
+        height: 3rem;
+        background-color: $transparent;
+        border: none;
+
+        .hamburger-button__bar--top,
+        .hamburger-button__bar--middle,
+        .hamburger-button__bar--bottom {
+          color: $primary;
+          background-color: $primary;
+          width: 3.5em;
+          height: 0.6em;
+          border-radius: 1em;
+          position: absolute;
+          @include transitionAll();
+          @include dropShadow();
+        }
+
+        .hamburger-button__bar--top {
+          top: 5px;
+        }
+
+        .hamburger-button__bar--middle {
+          top: 20px;
+        }
+
+        .hamburger-button__bar--bottom {
+          top: 35px;
+        }
+
+        &.is-open {
+
+          .hamburger-button__bar--top,
+          .hamburger-button__bar--middle,
+          .hamburger-button__bar--bottom {
+            @include transitionAll();
+          }
+
+          .hamburger-button__bar--top {
+            -webkit-transform: rotate(45deg);
+            -moz-transform: rotate(45deg);
+            -o-transform: rotate(45deg);
+            transform: rotate(45deg);
+            top: 15px;
+            left: 8px;
+          }
+
+          .hamburger-button__bar--middle {
+            width: 0%;
+            opacity: 0;
+          }
+
+          .hamburger-button__bar--bottom {
+            -webkit-transform: rotate(-45deg);
+            -moz-transform: rotate(-45deg);
+            -o-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+            top: 15px;
+            left: 8px;
+          }
+        }
+      }
+    }
+
+    .main-nav__drawer {
+      position: absolute;
+      width: 100vw;
+      height: 100vh;
+      top: 21vw;
+      right: -25em;
+      z-index: 2;
+      background-color: $white;
+      @include dropShadow();
+      @include transition(right 1s);
+
+      @include tablet {
+        transition: none;
+        position: relative;
+        height: auto;
+        top: 0;
+        right: 0;
+        box-shadow: none;
+        flex-basis: 80%;
+      }
+
+      &.is-open {
+        right: 0em;
+      }
+
+      .primary-nav {
+        padding-left: 0;
+        list-style-type: none;
+        overflow: scroll;
+        height: 75vh;
+        margin-top: 2em;
+        background-color: $white;
+
+        @include tablet {
+          padding: 0;
+          margin: 0;
+          height: auto;
+          display: flex;
+          justify-content: end;
+          align-items: center;
+          text-align: center;
+          overflow: initial;
+        }
+
+        >li {
+          padding: 1em;
+          text-transform: uppercase;
+          font-family: Quicksand;
+          font-weight: 500;
+
+          a {
+            color: 
+            $baseColor;
+            font-size: 0.9em;
+            @include tablet {
+              font-size: 0.65em;
+            }
+            @include desktop {
+              font-size: 0.75em;
+            }
+            @include regulardesktop {
+              font-size: 0.85em;
+            }
+          }
+
+          &.btn {
+            margin: 1em;
+            padding: 0;
+            min-width: auto;
+            text-align: center;
+            display:  block;
+            a {
+              font-size: 0.8em;
+              min-width: auto;
+              padding: 0.75em 2em;
+              text-align: center;
+              display: block;
+              color: $primary;
+              font-family: Poppins-Medium;
+            }
+            &.current-menu-item > a,
+            &.current-menu-ancestor > a {
+              border-bottom: none;
+            }
+          }
+
+          &.current-menu-item > a,
+          &.current-menu-ancestor > a {
+            color: $primary;
+            // border-bottom: 2px solid $primary;
+          }
+          @include tablet {
+            padding: 2em 0.5em;
+            display: flex;
+            align-items: center;
+          }
+          &.menu-item-has-children {
+            @include tablet {
+              position: relative;
+              
+              .sub-menu {
+                display: none;
+                position: absolute;
+                width: 16em;
+                padding-bottom: 1em;
+                top: 5.1em;
+                list-style-type: none;
+                text-align: left;
+                background-color: $white;
+                box-shadow: 0px 3px 5px -1px #ccc;
+                .current-menu-item > a {
+                  color: $secondary;
+                }
+              }
+              &.right-on-tablet {
+                .sub-menu {
+                  right: 0;
+                }
+              }
+              &:hover {
+                .sub-menu {
+                  display: block;
+                }
+              }
+            }
+
+            @include desktop {
+              &.right-on-tablet {
+                .sub-menu {
+                  right: unset;
+                }
+              }
+
+              .sub-menu {
+                top: 5em;
+              }
+            }
+
+            .sub-menu {
+              list-style-type: none;
+              padding-top: 1em;
+
+              li {
+                padding: 1em;
+                position: relative;
+
+                a {
+                  &::before {
+                    font-family: 'Font Awesome 5 Free';
+                    content: "\f101";
+                    font-weight: 900; 
+                    position: absolute;
+                    top: 1.5em;
+                    left: -0.5em;
+                    transition: left 250ms ease-in-out;
+                  }
+
+                  &:hover {
+                    &::before {
+                      left: -0em;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
